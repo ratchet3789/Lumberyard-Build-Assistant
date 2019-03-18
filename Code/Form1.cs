@@ -44,7 +44,7 @@ namespace LumberyardBuildTool
 
 			//Log welcome message.
 			LoggingtextBox.Text = string.Empty;
-			InfoLog("Hi.\nThis is a very basic C# Forms based build tool I (Ratchet) created to assist with building Lumberyard.\nThis is something I started writing before Lumberyard's Project Config built projects by default, so its not the most useful tool these days, however if you don't understand or don't want to interact with Lumberyard's WAF tool directly then this might be a big help.\nPlease @ me on the Lumberyard Discord if you have any issues or requests.");
+			InfoLog(Application.ProductName + " - V" + Application.ProductVersion);
 		}
 
 		private void BuildCleanPackage_ComboBox_SelectedIndexChanged(object sender, EventArgs e)

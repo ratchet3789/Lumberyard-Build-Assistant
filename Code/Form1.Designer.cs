@@ -1,4 +1,6 @@
-﻿namespace LumberyardBuildTool
+﻿using System.Windows.Forms;
+
+namespace LumberyardBuildTool
 {
 	partial class Form1
 	{
@@ -191,7 +193,7 @@
 			this.MinimizeBox = false;
 			this.Name = "Form1";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.Text = "Lumberyard Build Tool (Unofficial)";
+			this.Text = "Lumberyard Build Tool (Unofficial) ";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
