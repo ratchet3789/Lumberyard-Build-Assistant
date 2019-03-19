@@ -42,6 +42,9 @@ namespace LumberyardBuildTool
 			this.Compiler_ComboBox = new System.Windows.Forms.ComboBox();
 			this.Configuration_ComboBox = new System.Windows.Forms.ComboBox();
 			this.LoggingtextBox = new System.Windows.Forms.RichTextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.Spec_ComboBox = new System.Windows.Forms.ComboBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -81,11 +84,11 @@ namespace LumberyardBuildTool
 			// 
 			// BuildButton
 			// 
-			this.BuildButton.Location = new System.Drawing.Point(254, 240);
+			this.BuildButton.Location = new System.Drawing.Point(254, 304);
 			this.BuildButton.Name = "BuildButton";
 			this.BuildButton.Size = new System.Drawing.Size(75, 23);
 			this.BuildButton.TabIndex = 3;
-			this.BuildButton.Text = "BUILD";
+			this.BuildButton.Text = "Build";
 			this.BuildButton.UseVisualStyleBackColor = true;
 			this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
 			// 
@@ -163,7 +166,7 @@ namespace LumberyardBuildTool
 			// 
 			this.LoggingtextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.LoggingtextBox.Cursor = System.Windows.Forms.Cursors.Default;
-			this.LoggingtextBox.Location = new System.Drawing.Point(11, 153);
+			this.LoggingtextBox.Location = new System.Drawing.Point(11, 217);
 			this.LoggingtextBox.Name = "LoggingtextBox";
 			this.LoggingtextBox.ReadOnly = true;
 			this.LoggingtextBox.Size = new System.Drawing.Size(318, 81);
@@ -171,11 +174,64 @@ namespace LumberyardBuildTool
 			this.LoggingtextBox.Text = "";
 			this.LoggingtextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(8, 160);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(32, 13);
+			this.label5.TabIndex = 12;
+			this.label5.Text = "Spec";
+			// 
+			// Spec_ComboBox
+			// 
+			this.Spec_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.Spec_ComboBox.FormattingEnabled = true;
+			this.Spec_ComboBox.Items.AddRange(new object[] {
+            "All",
+            "Game",
+            "Woodpecker",
+            "AZCG Tests",
+            "Host Tests",
+            "Framwork Tests",
+            "DCC Plugins",
+            "Gridhub",
+            "Game and Engine",
+            "Dedicated Server",
+            "Engine and Editor",
+            "ShaderCacheGen",
+            "Gem Tests",
+            "GFXPrefabLab",
+            "GraphCanvas Test",
+            "Tools",
+            "ScriptCanvas Test",
+            "Resource Compiler",
+            "Lmbr Setup Tools",
+            "QTControlGallery"});
+			this.Spec_ComboBox.Location = new System.Drawing.Point(208, 157);
+			this.Spec_ComboBox.Name = "Spec_ComboBox";
+			this.Spec_ComboBox.Size = new System.Drawing.Size(121, 21);
+			this.Spec_ComboBox.TabIndex = 13;
+			this.Spec_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Spec_ComboBox_SelectedIndexChanged);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(173, 304);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 14;
+			this.button1.Text = "Configure";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(341, 271);
+			this.ClientSize = new System.Drawing.Size(341, 337);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.Spec_ComboBox);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.LoggingtextBox);
 			this.Controls.Add(this.Configuration_ComboBox);
 			this.Controls.Add(this.Compiler_ComboBox);
@@ -212,6 +268,9 @@ namespace LumberyardBuildTool
 		private System.Windows.Forms.ComboBox Compiler_ComboBox;
 		private System.Windows.Forms.ComboBox Configuration_ComboBox;
 		private System.Windows.Forms.RichTextBox LoggingtextBox;
+		private Label label5;
+		private ComboBox Spec_ComboBox;
+		private Button button1;
 	}
 }
 

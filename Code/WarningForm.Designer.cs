@@ -37,19 +37,18 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft JhengHei Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Microsoft JhengHei Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.Black;
 			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(400, 120);
+			this.label1.Size = new System.Drawing.Size(320, 100);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Failed to find lmbr_waf in current directory.\r\nEither we broke something or you d" +
-    "on\'t have\r\nthis executable located in the dev folder of \r\nLumberyard.\r\nPress \"Go" +
-    " Away\" to ignore this warning.";
+			this.label1.Text = "Failed to find lmbr_waf.bat.\r\nPlease place this exe in the /dev/ folder of\r\nAmazo" +
+    "n Lumberyard.\r\n\r\nPress \"Go Away\" to ignore this warning.";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(286, 141);
+			this.button1.Location = new System.Drawing.Point(176, 123);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 1;
@@ -59,7 +58,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(374, 141);
+			this.button2.Location = new System.Drawing.Point(257, 123);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 2;
@@ -71,7 +70,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(461, 176);
+			this.ClientSize = new System.Drawing.Size(340, 155);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label1);
@@ -81,7 +80,7 @@
 			this.MinimizeBox = false;
 			this.Name = "WarningForm";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.Text = "Lumberyard Build Tool - Lmbr_Waf Error (Unofficial)";
+			this.Text = "lmbr_waf.bat Missing from directory";
 			this.Load += new System.EventHandler(this.WarningForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

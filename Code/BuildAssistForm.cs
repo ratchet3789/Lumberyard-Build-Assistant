@@ -21,7 +21,7 @@ namespace LumberyardBuildTool
 		public Form1()
 		{
 			InitializeComponent();
-			BuildCommand = new string[5];
+			BuildCommand = new string[6];
 			string[] FileData = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
 
 			//Check if any WAF files exist in the directory.
@@ -41,10 +41,12 @@ namespace LumberyardBuildTool
 			Android64_ComboBox.SelectedIndex = 0;
 			Compiler_ComboBox.SelectedIndex = Compiler_ComboBox.Items.Count - 1;
 			Configuration_ComboBox.SelectedIndex = 0;
+			Spec_ComboBox.SelectedIndex = 0;
 
 			//Log welcome message.
 			LoggingtextBox.Text = string.Empty;
-			InfoLog(Application.ProductName + " - V" + Application.ProductVersion);
+			InfoLog(Application.ProductName + " - v " + Application.ProductVersion);
+			InfoLog("\nSuccessfully works with Lumberyard Versions\n1.18.0.0");
 		}
 
 		private void BuildCleanPackage_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +98,15 @@ namespace LumberyardBuildTool
 				BuildCommand[4] = string.Empty;
 		}
 
+		private void Spec_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			//because Spec works a bit differently we have to process in a few different ways
+			string ProcessedSpec = " -p " + Spec_ComboBox.GetItemText(Spec_ComboBox.SelectedItem).ToLower();
+			ProcessedSpec.Replace(" ", "_");
+			BuildCommand[5] = ProcessedSpec;
+			InfoLog(ProcessedSpec);
+		}
+
 		private void richTextBox1_TextChanged(object sender, EventArgs e)
 		{
 			//Automatically scroll to the bottom of the text box.
@@ -115,7 +126,7 @@ namespace LumberyardBuildTool
 					OutputValue += BuildCommand[i];
 				}
 			}
-			InfoLog("Running lmbr_waf " + OutputValue);
+			InfoLog("Executing: lmbr_waf " + OutputValue);
 			FindRunWAF();
 		}
 
@@ -134,6 +145,19 @@ namespace LumberyardBuildTool
 		void InfoLog(string InputData)
 		{
 			LoggingtextBox.Text += "\n" + InputData;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			InfoLog("Executing: lmbr_waf configure");
+			System.Diagnostics.Process Proc = new System.Diagnostics.Process();
+			System.Diagnostics.ProcessStartInfo PSI = new System.Diagnostics.ProcessStartInfo();
+
+			//Start Windows CMD and parse build string.
+			PSI.FileName = "CMD.EXE";
+			PSI.Arguments = "/K lmbr_waf configure >> Build.log";
+			Proc.StartInfo = PSI;
+			Proc.Start();
 		}
 	}
 }
