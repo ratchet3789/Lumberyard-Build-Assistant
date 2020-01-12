@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using LumberyardBuildAssistant.Code;
 
 namespace LumberyardBuildTool
 {
@@ -46,7 +47,7 @@ namespace LumberyardBuildTool
 			//Log welcome message.
 			LoggingtextBox.Text = string.Empty;
 			InfoLog(Application.ProductName + " - v " + Application.ProductVersion);
-			InfoLog("\nSuccessfully works with Lumberyard Versions\n1.18.0.0");
+			InfoLog("\nCurrently Supports Lumberyard 1.17.0.0 to 1.21.2.0");
 		}
 
 		private void BuildCleanPackage_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,8 +102,9 @@ namespace LumberyardBuildTool
 		private void Spec_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			//because Spec works a bit differently we have to process in a few different ways
-			string ProcessedSpec = " -p " + Spec_ComboBox.GetItemText(Spec_ComboBox.SelectedItem).ToLower();
-			ProcessedSpec.Replace(" ", "_");
+			string specInput = Spec_ComboBox.GetItemText(Spec_ComboBox.SelectedItem).ToLower();
+			specInput = specInput.Replace(' ', '_');
+			string ProcessedSpec = " -p " + specInput;
 			BuildCommand[5] = ProcessedSpec;
 			InfoLog(ProcessedSpec);
 		}
@@ -117,6 +119,7 @@ namespace LumberyardBuildTool
 		private void BuildButton_Click(object sender, EventArgs e)
 		{
 			LoggingtextBox.Text = string.Empty;
+			OutputValue = string.Empty;
 
 			//Build our waf build string
 			for (int i = 0; i < BuildCommand.Length; i++)
@@ -138,8 +141,10 @@ namespace LumberyardBuildTool
 			//Start Windows CMD and parse build string.
 			PSI.FileName = "CMD.EXE";
 			PSI.Arguments = "/K lmbr_waf " + OutputValue + " >> Build.log";
+
 			Proc.StartInfo = PSI;
 			Proc.Start();
+			LoggingtextBox.Text += "\nCheck Build.log for messages upon completion";
 		}
 
 		void InfoLog(string InputData)
@@ -158,6 +163,12 @@ namespace LumberyardBuildTool
 			PSI.Arguments = "/K lmbr_waf configure >> Build.log";
 			Proc.StartInfo = PSI;
 			Proc.Start();
+			while (!Proc.HasExited)
+			{
+				LoggingtextBox.Text += Proc.StandardOutput.ReadLine();
+				Proc.WaitForExit();
+			}
+			LoggingtextBox.Text += "Check Build.log for messages";
 		}
 	}
 }
